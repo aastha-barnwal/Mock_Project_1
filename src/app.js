@@ -11,18 +11,13 @@ const querystring =require('querystring');
 const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET=process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
-
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
 dotenv.config();
 
 const app = express();
 app.use(express.json());
-// parses the json object 
-// app.use(bodyParser.json());
-// app.use(session({
-//     secret: 'secret_key',
-//     resave:false,
-//     saveUninitialized:true
-// }))
+
 
 app.get('/', (req, res) => {
   res.send('<a href="/auth/google">Login with Google</a>');
@@ -44,7 +39,7 @@ db.once('open', () => {
     console.log('Connected to MongoDB');
 });
 
-// app.use('/', apiRoutes);
+app.use('/', routes);
 
 const PORT = process.env.PORT;
 app.listen(PORT, () => {

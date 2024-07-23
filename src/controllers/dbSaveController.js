@@ -1,7 +1,7 @@
 const Customer = require('../models/Customer');
 
 // middleware
-const { rateLimit } = require('../utils/rateLimiter');
+// const { rateLimit } = require('../utils/rateLimiter');
 
 // first api
 const dbSaveController = async (req, res) => {
@@ -21,11 +21,11 @@ const dbSaveController = async (req, res) => {
         }
 
         // calling method for 2min and 5 min api hit
-        const { allowed, message } = rateLimit(customer_name);
+        // const { allowed, message } = rateLimit(customer_name);
 
-        if (!allowed) {
-            return res.status(429).json({ message });
-        }
+        // if (!allowed) {
+        //     return res.status(429).json({ message });
+        // }
 
         //if customer is new or 2min or 5min case is not there
         const customer = new Customer({ customer_name, dob, monthly_income });

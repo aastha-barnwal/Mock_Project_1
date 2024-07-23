@@ -3,12 +3,11 @@ const router = express.Router();
 const dbSaveController = require('../controllers/dbSaveController');
 const timeBasedController = require('../controllers/timeBasedController');
 const dbSearchController = require('../controllers/dbSearchController');
-
-router.post('/db-save', dbSaveController);
-router.post('/time-based-api', timeBasedController);
-router.get('/db-search', dbSearchController);
-
 const authController = require('../controllers/authController')
+
+router.post('/db-save',authController.authenticateToken,dbSaveController);
+router.post('/time-based-api',authController.authenticateToken,timeBasedController);
+router.get('/db-search',dbSearchController);
 
 router.get('/google', authController.signup);
 router.get('/google/callback', authController.googleCallback);
