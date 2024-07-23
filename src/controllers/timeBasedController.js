@@ -10,7 +10,7 @@ const timeBasedController = async (req, res) => {
         const hour = now.getHours();
 
         // check if day is monday
-        if (day === 1) {
+        if (day === 2) {
             return res.status(400).json({ message: 'Please don’t use this API on Monday' });
         }
 
